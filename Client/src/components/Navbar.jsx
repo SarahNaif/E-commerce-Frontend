@@ -5,7 +5,7 @@ import React from 'react'
 import styled from "styled-components";
 import Modal from "./Modal";
 import {mobile} from "../responsive";
-import Quickview from "./Quickview";
+
 
 
 const Container = styled.div`

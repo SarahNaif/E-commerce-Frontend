@@ -1,5 +1,5 @@
 
-import { FavoriteBorderOutlined, RemoveRedEyeOutlined, SearchOutlined, ShoppingCartOutlined } from '@material-ui/icons';
+import { FavoriteBorderOutlined, RemoveRedEyeOutlined, ShoppingCartOutlined } from '@material-ui/icons';
 import React ,{useState}from 'react'
 import styled from "styled-components";
 import Quickview from './Quickview';

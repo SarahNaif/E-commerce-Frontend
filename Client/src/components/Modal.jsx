@@ -79,18 +79,7 @@ const ModalContent = styled.div`
 `;
 
 
-const Form = styled.form`
-  display: flex;
-  flex-direction: column;
-  min-width: 60%;
-  
-`;
-const Input = styled.input`
-  flex: 1;
-  /* min-width: 60%; */
-  margin: 10px 0;
-  padding: 10px;
-`;
+
 const Button = styled.button`
  color: white;
  cursor: pointer;
@@ -100,9 +89,7 @@ const Button = styled.button`
     border: none;
     min-width: 60%;
 `;
-const Link = styled.a`
-  
-`;
+
 
 const CloseModalButton = styled(Close)`
   cursor: pointer;

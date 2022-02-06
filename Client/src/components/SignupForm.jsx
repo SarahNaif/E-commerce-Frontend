@@ -24,9 +24,7 @@ const Button = styled.button`
     border: none;
     min-width: 60%;
 `;
-const Link = styled.a`
-  
-`;
+
 const SignupForm = () => {
     return (
         <Form>
