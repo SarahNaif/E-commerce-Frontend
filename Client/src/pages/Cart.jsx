@@ -1,8 +1,5 @@
 import { Add, Remove } from "@material-ui/icons";
 import styled from "styled-components";
-import Announcement from "../components/Announcement";
-import Footer from "../components/Footer";
-import Navbar from "../components/Navbar";
 
 
 const Wrapper = styled.div`
@@ -154,8 +151,7 @@ const Container = styled.div``;
 const Cart = () => {
     return (
         <Container>
-             <Navbar />
-             <Announcement />
+          
 
              <Wrapper>
         <Title>YOUR BAG</Title>
@@ -244,7 +240,7 @@ const Cart = () => {
         </Bottom>
       </Wrapper>
 
-             <Footer />
+          
         </Container>
     )
 }

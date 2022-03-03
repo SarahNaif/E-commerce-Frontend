@@ -1,5 +1,7 @@
 import React from 'react'
+import { Link } from "react-router-dom";
 import styled from "styled-components";
+
 import {mobile} from "../responsive";
 const Container = styled.div`
   ${mobile({  flexDirection:"column" })}
@@ -54,17 +56,25 @@ background-color: white;
 color: gray;
 cursor: pointer;
 `;
+const Navlink = styled(Link)`
+   text-decoration: none;
+   
+`;
 
 const CategoryItem = ({item}) => {
     return (
       
       
       <Container>
+        {/* */}
         <Image src={item.img} />
         <Info>
           <Title>{item.title}</Title>
+           <Navlink to={`/products/${item.cat}`}>
           <Button>SHOP NOW</Button>
+          </Navlink>
         </Info>
+        
       </Container>
       
    

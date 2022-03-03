@@ -7,12 +7,14 @@ import {
     Room,
     Twitter,
   } from "@material-ui/icons";
+import {mobile} from "../responsive";
 import styled from "styled-components";
 
 
 const Container =styled.div`
   display: flex;
   flex-direction: column;
+
   color: #0d0d0d;
   background-color: #efefef;
 `;
@@ -21,6 +23,7 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction:row;
   padding: 10px 40px;
+  ${mobile({ padding: "0px", flexDirection:"column" })}
   
 `;
 
@@ -104,7 +107,10 @@ const Img = styled.img`
 text-align:right;
 border-style: none;
 max-width: 100%;
+
 margin: 0 10px;
+${mobile({ display:"none" })}
+
 `
 function Footer() {
     return (

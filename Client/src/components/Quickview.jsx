@@ -1,5 +1,6 @@
+import { useState } from "react"
 import { Close } from "@material-ui/icons";
-import React from 'react'
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 const Background = styled.div`
@@ -16,15 +17,17 @@ const Background = styled.div`
 `;
 const ModalWrapper = styled.div`
   width: 800px;
-  height: 600px;
+  height: 500px;
   box-shadow: 0 5px 16px rgba(0, 0, 0, 0.2);
   background: #fff;
   color: #000;
+  padding: 5px 2px;
   position: relative;
   display: grid;
   grid-template-columns: 1fr 1fr;
   justify-items:center;
   justify-content: center;  
+  border-radius: 10px;
   
 `;
 const ModalContent = styled.div`
@@ -70,7 +73,6 @@ const BtnInput = styled(Input)`
   cursor: pointer;
 `;
 const Button = styled.button`
-  color: white;
   cursor: pointer;
   padding: 10px 24px;
   margin:15px 0;
@@ -78,21 +80,34 @@ const Button = styled.button`
   color: #fff;
   border: none;
   min-width: 80%;
+  &:nth-of-type(2){
+    background: white;
+    border: solid 2px black ;
+  }
+  
+`;
+const Linkto = styled(Link)`
+   text-decoration: none;
+   color: black;
 `;
 const ModalImgWrapper = styled.div`
     display: flex;
     align-items: center;
     justify-content:flex-start;
-    padding-left: 20px;
+    padding:9px 20px;
+    max-height: 400px;
+   
 `;
 const ModalImg = styled.img`
-  height: 85%;
+  max-height:100%; 
+  max-width:100%;
+  
 `;
 const Text = styled.h5`
   margin: 8px 0;
   font-weight: 600;
   line-height: 1.4;
-  font-size: calc(20px + (24 - 20) * ((100vw - 575px) / 725));
+  font-size: 1.9rem;
 `;
 const CloseModalButton = styled(Close)`
   cursor: pointer;
@@ -106,37 +121,47 @@ const CloseModalButton = styled(Close)`
 `;
 
 
+
+
+
 const Quickview = ({showModel,setshowModel,item,key}) => {
+ 
+  const [count, setCount] = useState(0);
+
     return (
       <>
         {showModel ? (
           <Background>
-{/* map */}
+
             <ModalWrapper key={key}>
-                <ModalImgWrapper>
+                <ModalImgWrapper >
                 <ModalImg src={item.img} />
                 </ModalImgWrapper>
               
               <ModalContent>
-                <span>Out Stock</span>
-                <Text>Black Tiered Smock Mini Dress</Text>
-                <Text>$50.00</Text>
+                {/* if true do it if not nothing  */}
+                {/*    {item.stock === 0 && <span>Out Stock</span>} */}
+
+                {item.stock === 0 && <span>Out Stock</span>}
+                <Text>{item.title}</Text>
+                <Text>${item.price}</Text>
                 <label>Qty :</label>
                 <Form>
                   
-                  <BtnInput
-                    type="button"
-                    value="-"
-                    field="quantity"
+                  <BtnInput type="button" value="-" onClick={() => {
+
+item.stock > 1 ? setCount(count - 1) : setCount(1);
+
+}}field="quantity"
                   />
-                  <Input type="text" name="quantity" value="1" />
-                  <BtnInput
-                    type="button"
-                    value="+"
-                    field="quantity"
+                  <Input type="text" name="quantity" value={count}  />
+
+                  <BtnInput type="button" value="+" onClick={() =>  setCount(count + 1)} field="quantity"
                   />
+
                 </Form>
-                <Button>add to cart</Button>
+                <Button>Add To Cart</Button>
+                <Button><Linkto to={`/product/${item.id}`}>View Product</Linkto></Button>
               </ModalContent>
               <CloseModalButton
                 aria-label="Close modal"

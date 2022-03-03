@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { Badge } from "@material-ui/core";
-import {   Search, ShoppingBasketOutlined,FavoriteBorderOutlined, PersonOutlineOutlined } from "@material-ui/icons";
-import React from 'react'
+import { ShoppingBasketOutlined, PersonOutlineOutlined } from "@material-ui/icons";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import Modal from "./Modal";
 import {mobile} from "../responsive";
@@ -28,32 +28,30 @@ const Left = styled.div`
   align-items: center;
 `;
 
-const Language = styled.span`
-  font-size: 14px;
-  cursor: pointer;
-  ${mobile({ display: "none" })}
-`;
-
-const SearchContainer = styled.div`
-  border: 0.5px solid lightgray;
-  border-radius:9px;
-  display: flex;
-  align-items: center;
-  margin-left: 25px;
-  padding: 5px;
-  ${mobile({ display:"none" })}
-
-`;
-
-const Input = styled.input`
-  border: none;
-  
-`;
 
 const Center = styled.div`
   flex: 1;
   text-align: center;
 `;
+
+const ListNav = styled.ul`
+  display: flex;
+  justify-content:space-evenly;
+  font-size:1.2rem;
+ 
+li{
+  display: flex;
+  justify-content:space-evenly;
+  list-style: none;
+  font-weight: 500;
+
+}
+`
+const Navlink = styled(Link)`
+   text-decoration: none;
+   color: black;
+`;
+
 
 const Logo = styled.h1`
   font-weight: bold;
@@ -86,43 +84,40 @@ const Navbar = () => {
     console.log("clicked");
   }
     return (
-        <Container>
+      <Container>
         <Wrapper>
+
           <Left>
-            <Language>EN</Language>
-            <SearchContainer>
-              <Input placeholder="Search" />
-              <Search style={{ color: "gray", fontSize: 16 }} />
-            </SearchContainer>
-          </Left>
-          <Center>
             <Logo>LAMA.</Logo>
+          </Left>
+
+          <Center>
+            <ListNav>
+              <li><Navlink to="/">Home</Navlink></li>
+              {/* <li><Navlink to="/products">Products</Navlink></li> */}
+            </ListNav>
           </Center>
 
           <Right>
-
             <Button onClick={openModel}>
-              
-            <MenuItem><PersonOutlineOutlined style={{ fontSize: 29 }}/></MenuItem>
+              <MenuItem>
+                <PersonOutlineOutlined style={{ fontSize: 29 }} />
+              </MenuItem>
             </Button>
-           
-            <Modal showModal={showModal} setShowModal={setShowModal}/>
-            {/* <Quickview showModal={showModal} setShowModal={setShowModal}/> */}
-            
-            <Badge badgeContent={5} color="primary" >
-            <MenuItem><FavoriteBorderOutlined/></MenuItem>
-            </Badge>
 
+            <Modal showModal={showModal} setShowModal={setShowModal} />
             <MenuItem>
-              <Badge badgeContent={4} color="primary">
+            <Navlink to="/Cart" >
+            <Badge  color="primary">
                 <ShoppingBasketOutlined />
               </Badge>
+            </Navlink>
+             
             </MenuItem>
-
           </Right>
         </Wrapper>
       </Container>
-    )
+    );
 }
 
 export default Navbar

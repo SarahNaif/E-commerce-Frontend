@@ -1,16 +1,29 @@
-import { ArrowDropUp } from "@material-ui/icons";
+import { useState } from "react"
 import styled from "styled-components"
-import Navbar from "../components/Navbar";
-import Announcement from "../components/Announcement";
 import Products from "../components/Products";
-import Newsletter from "../components/Newsletter";
-import Footer from "../components/Footer";
+import { useLocation } from "react-router-dom";
+
 
 const Container = styled.div`
-   
+   /* width: 1000px;
+   display:flex;
+   flex-direction: column;
+   justify-content: center;
+   text-align: center;
+   /* margin: 25px ; */
+   /* position:relative;
+   left: 16%;  */
+  
+
 `;
-const Title = styled.h1`
-  margin: 20px;
+const Title = styled.h3`
+  margin: 45px;
+  font-size: 44px;
+  font-weight:400;
+  &::first-letter{
+    text-transform: uppercase;
+  }
+
 `;
 const FilterContainer = styled.div`
   display: flex;
@@ -52,29 +65,48 @@ border-bottom: 0.7px solid rgb(0,0,0,0.3);
 
 `;
 const ProductList = () => {
+
+  const [filter, setFilter] = useState({});
+  const [sort, setSort] = useState("newest");
+
+
+const location = useLocation();
+const cat = (location.pathname.split("/")[2])
+
+
+
+// Update state
+const handleFilterChange = (e) => {
+  
+  const value = e.target.value;
+  setFilter({
+    ...filter,
+   [e.target.name]:value
+  })
+  console.log(filter)
+}
+
+
     return (
       <Container>
-           <Navbar />
-        <Announcement />
-       
-        
-        <Title>Dresses</Title>
+      <Title>{cat}</Title>
       <FilterContainer>
         <Filter>
           <FilterText>Filter Products:</FilterText>
-          <Select>
-            <Option disabled selected>
-              Color
+          <Select name="color"  onChange={handleFilterChange}>
+            {/*  */}
+            <Option disabled >
+             Color
             </Option>
-            <Option>White</Option>
-            <Option>Black</Option>
-            <Option>Red</Option>
-            <Option>Blue</Option>
-            <Option>Yellow</Option>
-            <Option>Green</Option>
+            <Option value="White">White</Option>
+            <Option value="Black">Black</Option>
+            <Option value="Red">Red</Option>
+            <Option value="Blue">Blue</Option>
+            <Option value="Yellow">Yellow</Option>
+            <Option value="Green">Green</Option>
           </Select>
-          <Select>
-            <Option disabled selected>
+          <Select name="size" onChange={handleFilterChange}>
+            <Option disabled >
               Size
             </Option>
             <Option>XS</Option>
@@ -86,17 +118,17 @@ const ProductList = () => {
         </Filter>
         <Filter>
           <FilterText>Sort Products:</FilterText>
-          <Select>
-            <Option selected>Newest</Option>
-            <Option> price asc</Option>
-            <Option> price des</Option>
+          <Select onChange={e => setSort(e.target.value)}>
+            <Option value="newest">Newest</Option>
+            <Option value="asc"> price asc</Option>
+            <Option value="des"> price des</Option>
           </Select>
         </Filter>
       </FilterContainer>
       <Line/>
-      <Products />
-      <Newsletter />
-      <Footer />
+{/* catigory and state filter */}
+      <Products cat={cat} filter={filter} sort={sort}/> 
+      
       </Container>
     );
 }

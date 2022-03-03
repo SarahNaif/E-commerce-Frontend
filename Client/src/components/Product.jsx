@@ -35,6 +35,7 @@ const Container = styled.div `
          opacity: 1;
          background-color: #98969623;
      }
+    
 ` 
 const Circle = styled.div`
   width: 250px;
