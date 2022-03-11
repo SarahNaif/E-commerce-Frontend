@@ -124,9 +124,6 @@ const SingleProduct = () => {
   const thisProduct = popularProducts.find(prod => prod.id === productId)
 console.log(thisProduct)
 
-const useEffect = () => {
-  console.log(thisProduct)
-}
     return (
 
         <Container >
