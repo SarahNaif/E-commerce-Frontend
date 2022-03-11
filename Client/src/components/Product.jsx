@@ -1,8 +1,9 @@
 
 import { FavoriteBorderOutlined, RemoveRedEyeOutlined, ShoppingCartOutlined } from '@material-ui/icons';
-import React ,{useState}from 'react'
+import React ,{useState , useEffect}from 'react'
 import styled from "styled-components";
 import Quickview from './Quickview';
+import { useLocation } from "react-router-dom";
 
 
 const Info = styled.div `
@@ -74,9 +75,9 @@ const Button = styled.button`
 
 const Product = ({item,key}) => {
 const [showModel,setshowModel]=useState(false)
+
 const openModel = () => {
  setshowModel(prev => !prev)
- console.log("me 2")
 }
 
 

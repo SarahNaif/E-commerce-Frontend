@@ -65,7 +65,7 @@ const CategoryItem = ({item}) => {
     return (
       
       
-      <Container>
+      <Container >
         {/* */}
         <Image src={item.img} />
         <Info>

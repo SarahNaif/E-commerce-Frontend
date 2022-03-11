@@ -1,18 +1,12 @@
 import { useState } from "react"
+import { useParams } from "react-router-dom";
 import styled from "styled-components"
 import Products from "../components/Products";
 import { useLocation } from "react-router-dom";
 
 
 const Container = styled.div`
-   /* width: 1000px;
-   display:flex;
-   flex-direction: column;
-   justify-content: center;
-   text-align: center;
-   /* margin: 25px ; */
-   /* position:relative;
-   left: 16%;  */
+ 
   
 
 `;
@@ -65,7 +59,7 @@ border-bottom: 0.7px solid rgb(0,0,0,0.3);
 
 `;
 const ProductList = () => {
-
+  
   const [filter, setFilter] = useState({});
   const [sort, setSort] = useState("newest");
 
@@ -88,6 +82,7 @@ const handleFilterChange = (e) => {
 
 
     return (
+
       <Container>
       <Title>{cat}</Title>
       <FilterContainer>

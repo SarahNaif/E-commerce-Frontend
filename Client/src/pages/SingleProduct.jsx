@@ -1,10 +1,8 @@
+import React ,{useState , useEffect}from 'react'
 import styled from "styled-components"
-import Navbar from "../components/Navbar";
-import Announcement from "../components/Announcement";
-import Newsletter from "../components/Newsletter";
-import Footer from "../components/Footer";
-import { Add, Remove } from "@material-ui/icons";
-
+import { useLocation,useParams } from "react-router-dom";
+import { Add, InsertEmoticon, Remove } from "@material-ui/icons";
+import { popularProducts } from '../data';
 const Container = styled.div``;
 const Wrapper = styled.div`
   padding: 50px;
@@ -120,14 +118,24 @@ const Button = styled.button`
   }
 `;
 const SingleProduct = () => {
+  // productId string , data id string 
+  const loca = useLocation();
+  const productId = (loca.pathname.split("/")[2])
+  const thisProduct = popularProducts.find(prod => prod.id === productId)
+console.log(thisProduct)
+
+const useEffect = () => {
+  console.log(thisProduct)
+}
     return (
-        <Container>
+
+        <Container >
         <Wrapper>
           <ImgContainer>
-            <Image src="https://i.ibb.co/S6qMxwr/jean.jpg" />
+            <Image src={thisProduct.img} />
           </ImgContainer>
           <InfoContainer>
-            <Title>Denim Jumpsuit</Title>
+            <Title>{thisProduct.title}</Title>
             <Desc>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
               venenatis, dolor in finibus malesuada, lectus ipsum porta nunc, at
@@ -135,7 +143,7 @@ const SingleProduct = () => {
               tristique tortor pretium ut. Curabitur elit justo, consequat id
               condimentum ac, volutpat ornare.
             </Desc>
-            <Price>$ 20</Price>
+            <Price>$ {thisProduct.price}</Price>
             <FilterContainer>
               <Filter>
                 <FilterTitle>Color</FilterTitle>
@@ -165,6 +173,10 @@ const SingleProduct = () => {
           </InfoContainer>
         </Wrapper>
       </Container>
+
+
+
+
     )
 }
 

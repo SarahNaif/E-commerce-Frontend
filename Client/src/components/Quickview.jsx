@@ -1,6 +1,6 @@
-import { useState } from "react"
+import { useState, } from "react"
 import { Close } from "@material-ui/icons";
-import { Link } from "react-router-dom";
+import { Link,useParams } from "react-router-dom";
 import styled from "styled-components";
 
 const Background = styled.div`
@@ -125,7 +125,7 @@ const CloseModalButton = styled(Close)`
 
 
 const Quickview = ({showModel,setshowModel,item,key}) => {
- 
+  
   const [count, setCount] = useState(0);
 
     return (
@@ -161,7 +161,10 @@ item.stock > 1 ? setCount(count - 1) : setCount(1);
 
                 </Form>
                 <Button>Add To Cart</Button>
-                <Button><Linkto to={`/product/${item.id}`}>View Product</Linkto></Button>
+                  
+                <Button><Linkto to={`/product/${item.id}`}  >View Product</Linkto></Button>
+                
+               
               </ModalContent>
               <CloseModalButton
                 aria-label="Close modal"
